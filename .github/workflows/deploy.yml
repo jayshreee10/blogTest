@@ -23,7 +23,7 @@ jobs:
       # Step 3: Clone the Hugo repository into a subfolder
       - name: Clone Hugo Repository
         run: |
-          git clone https://github.com/your_username/your_react_repo.git hugo  # Replace with your actual Hugo repo
+          git clone https://github.com/jayshreee10/Hugo.git hugo  # Replace with your actual Hugo repo
 
       # Step 4: Build the Hugo site
       - name: Build Hugo Site
@@ -41,8 +41,8 @@ jobs:
       # Step 6: Commit and push the changes back to the React repository
       - name: Commit and Push Changes
         run: |
-          git config --local user.name "GitHub Actions"
-          git config --local user.email "actions@github.com"
+          git config --local user.name "jayshreee10"
+          git config --local user.email "2001109280_ee@pmec.ac.in"
           git add public/blogs/
           git commit -m "Update blogs from Hugo"
           git push origin main
