@@ -43,6 +43,6 @@ jobs:
         run: |
           git config --local user.name "jayshreee10"
           git config --local user.email "2001109280_ee@pmec.ac.in"
-          git add public/blogs/
+          git add .   # Add all changes, including untracked files
           git commit -m "Update blogs from Hugo"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/jayshreee10/blogTest.git main  # Use GITHUB_TOKEN for pushing
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/jayshreee10/blogTest.git main  # Use GH_PAT for pushing
