@@ -45,4 +45,4 @@ jobs:
           git config --local user.email "2001109280_ee@pmec.ac.in"
           git add public/blogs/
           git commit -m "Update blogs from Hugo"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jayshreee10/blogTest.git main  # Use GITHUB_TOKEN for pushing
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/jayshreee10/blogTest.git main  # Use GITHUB_TOKEN for pushing
