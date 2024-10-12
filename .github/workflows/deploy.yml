@@ -1,7 +1,4 @@
- name: Clone Hugo repository
-env:
-    GH_PAT: ${{ secrets.GH_PAT }}
-
+name: Clone Hugo repository and update React app
 
 # Trigger this workflow on a push to the main branch
 on:
@@ -12,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GH_PAT: ${{ secrets.GH_PAT }} # Declare the secret here for use in the job
 
     steps:
       # Step 1: Checkout the React repository
@@ -23,10 +22,10 @@ jobs:
         run: |
           sudo apt-get install hugo
 
-      # Step 3: Clone the Hugo repository into a subfolder
+      # Step 3: Clone the Hugo repository into a subfolder (use the GH_PAT for authentication)
       - name: Clone Hugo Repository
         run: |
-          git clone https://github.com/jayshreee10/Hugo.git hugo  # Replace with your actual Hugo repo
+          git clone https://$GH_PAT@github.com/jayshreee10/Hugo.git hugo  # Use GH_PAT for private repo access
 
       # Step 4: Build the Hugo site
       - name: Build Hugo Site
@@ -41,11 +40,11 @@ jobs:
           mkdir -p public/blogs          # Create the blogs folder if it doesn't exist
           cp -r hugo/public/* public/blogs/   # Copy the built Hugo site to React public/blogs
 
-      # Step 6: Commit and push the changes back to the React repository
+      # Step 6: Commit and Push Changes Back to GitHub (use the GH_PAT for authentication)
       - name: Commit and Push Changes
         run: |
           git config --local user.name "jayshreee10"
           git config --local user.email "2001109280_ee@pmec.ac.in"
           git add public/blogs/
           git commit -m "Update blogs from Hugo"
-          git push origin main
+          git push https://$GH_PAT@github.com/jayshreee10/blogTest.git main  # Use GH_PAT for pushing
