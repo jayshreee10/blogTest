@@ -1,4 +1,7 @@
-name: Update Hugo Blog in React App
+ name: Clone Hugo repository
+env:
+    GH_PAT: ${{ secrets.GH_PAT }}
+
 
 # Trigger this workflow on a push to the main branch
 on:
