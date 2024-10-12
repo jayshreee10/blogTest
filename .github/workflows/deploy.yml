@@ -1,10 +1,8 @@
-name: Clone Hugo repository and update React app
+name: Deploy from Hugo
 
-# Trigger this workflow on a push to the main branch
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types: [hugo-update] # Match the event type sent from the Hugo workflow
 
 jobs:
   build:
