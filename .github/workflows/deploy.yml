@@ -9,8 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GH_PAT: ${{ secrets.GH_PAT }} # Declare the secret here for use in the job
 
     steps:
       # Step 1: Checkout the React repository
@@ -22,10 +20,10 @@ jobs:
         run: |
           sudo apt-get install hugo
 
-      # Step 3: Clone the Hugo repository into a subfolder (use the GH_PAT for authentication)
+      # Step 3: Clone the Hugo repository into a subfolder
       - name: Clone Hugo Repository
         run: |
-          git clone https://$GH_PAT@github.com/jayshreee10/Hugo.git hugo  # Use GH_PAT for private repo access
+          git clone https://github.com/jayshreee10/Hugo.git hugo  # Use the public link, since authentication is not needed for public repos
 
       # Step 4: Build the Hugo site
       - name: Build Hugo Site
@@ -40,11 +38,11 @@ jobs:
           mkdir -p public/blogs          # Create the blogs folder if it doesn't exist
           cp -r hugo/public/* public/blogs/   # Copy the built Hugo site to React public/blogs
 
-      # Step 6: Commit and Push Changes Back to GitHub (use the GH_PAT for authentication)
+      # Step 6: Commit and Push Changes Back to GitHub
       - name: Commit and Push Changes
         run: |
           git config --local user.name "jayshreee10"
           git config --local user.email "2001109280_ee@pmec.ac.in"
           git add public/blogs/
           git commit -m "Update blogs from Hugo"
-          git push https://$GH_PAT@github.com/jayshreee10/blogTest.git main  # Use GH_PAT for pushing
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/jayshreee10/blogTest.git main  # Use GITHUB_TOKEN for pushing
